@@ -1,0 +1,32 @@
+.logo{
+  color: aliceblue;
+  
+}
+
+.header {
+    background-color: #693f7c;
+    font-weight: 600;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+  
+  }
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}	
+
+li {
+  display: inline;
+  margin-right: 20px;
+}
+  
+a{
+  text-decoration: none;
+  color: aliceblue;
+}
