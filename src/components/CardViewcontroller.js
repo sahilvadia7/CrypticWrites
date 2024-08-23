@@ -1,6 +1,6 @@
 import React from 'react';
 import CardView from './CardView';
-import { getDefaultNormalizer } from '@testing-library/react';
+import SlideView from './SlideView';
 import test from '../Images/test.jpg'
 
 
@@ -28,7 +28,10 @@ const CardViewcontroller = () => {
     </div>
 
     <div className='sideCardView'>
-  
+    <SlideView 
+        topic="React"
+        description="This is another card description ."
+      />
     </div>
 
     

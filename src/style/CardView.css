@@ -28,3 +28,15 @@
     display: flex;
     justify-content: center;
   }
+
+
+  /* slide Cardd */
+  .slideCard{
+    width: 25.33vw;
+    margin: 20px 0px 20px 0 ;
+    height: fit-content;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+  }

@@ -51,9 +51,10 @@ const Login = ({ setUserState }) => {
         navigate("/", { replace: true });
       });
     }
-  }, [formErrors]);
+  }, [formErrors, isSubmit, navigate, setUserState, user]);
   return (
-    <div className={loginstyle.login}>
+    <div className={loginstyle.loginBack}>
+      <div className={loginstyle.login}>
       <form>
         <h1>Login</h1>
         <input
@@ -78,7 +79,8 @@ const Login = ({ setUserState }) => {
           Login
         </button>
       </form>
-      <NavLink to="/signup">Not yet registered? Register Now</NavLink>
+      <NavLink className={loginstyle.a} to="/signup">Not yet registered? Register Now</NavLink>
+    </div>
     </div>
   );
 };

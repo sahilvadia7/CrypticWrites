@@ -73,7 +73,7 @@ const Register = () => {
   }, [formErrors, isSubmit, navigate, user]);
   return (
     <>
-    <div className="registerBack">
+    <div className={registerstyle.registerBack}>
       <div className={registerstyle.register}>
         <form>
           <h1>Create your account</h1>
@@ -126,7 +126,7 @@ const Register = () => {
             Register
           </button>
         </form>
-        <NavLink to="/login">Already registered? Login</NavLink>
+        <NavLink className={registerstyle.a} to="/login">Already registered? Login</NavLink>
       </div>
       </div>
     </>
