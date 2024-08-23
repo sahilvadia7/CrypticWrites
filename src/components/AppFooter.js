@@ -1,4 +1,5 @@
 import React from "react";
+import "../style/AppHeaderStyle.css"
 import {
   Box,
   FooterContainer,
@@ -6,7 +7,7 @@ import {
   Column,
   FooterLink,
   Heading,
-} from "./AppFooterStyle";
+} from "../components/AppFooterStyle.js";
 const AppFooter = () => {
   return (
       <Box>
