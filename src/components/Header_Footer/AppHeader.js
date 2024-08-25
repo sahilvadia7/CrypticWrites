@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import '../style/AppHeaderStyle.css';
+import '../../style/AppHeaderStyle.css';
 
 function AppHeader() {
   const navigate = useNavigate();
@@ -12,7 +12,7 @@ function AppHeader() {
         <nav>
           <ul>
             <li onClick={() => navigate("/")}>Home</li>
-            <li onClick={() => navigate("/about")}>About</li>
+            <li onClick={() => navigate("/aboutus")}>About</li>
             <li onClick={() => navigate("/category")}>Category</li>
             <li onClick={() => navigate("/contact")}>Contact</li>
           </ul>

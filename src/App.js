@@ -1,8 +1,10 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Register from 'D:/My Project/CrypticWrites/src/components/Register/Register.js'; 
-import Login from 'D:/My Project/CrypticWrites/src/components/Login/Login.js';
+import Register from './components/Register/Register.js'; 
+import Login from './components/Login/Login.js';
 import MyIndex from './view/MyIndex';
+import AboutUs from './view/AboutUs.js';
+
 
 function App() {
   return (
@@ -12,6 +14,7 @@ function App() {
         <Route path="/" element={<MyIndex />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/aboutus" element={<AboutUs />} />
         {/* <Route path="/contact" element={<Contact />} /> */}
       </Routes>
     </BrowserRouter>
