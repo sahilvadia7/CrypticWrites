@@ -11,10 +11,10 @@ function AppHeader() {
         <h1 className="logo">Crypticwrites</h1>
         <nav>
           <ul>
-            <li onClick={() => navigate("/")}>Home</li>
-            <li onClick={() => navigate("/aboutus")}>About</li>
-            <li onClick={() => navigate("/category")}>Category</li>
-            <li onClick={() => navigate("/contact")}>Contact</li>
+            <li className="nav-link" onClick={() => navigate("/")}>Home</li>
+            <li className="nav-link" onClick={() => navigate("/aboutus")}>About</li>
+            <li className="nav-link" onClick={() => navigate("/category")}>Category</li>
+            <li className="nav-link" onClick={() => navigate("/contact")}>Contact</li>
           </ul>
         </nav>
       </header>
