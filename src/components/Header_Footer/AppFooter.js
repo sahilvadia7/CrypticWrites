@@ -16,6 +16,8 @@ const AppFooter = () => {
                   color: "#693f7c",
                   textAlign: "center",
                   marginTop: "10px",
+                  fontSize:"2em",
+                //   marginTop:"10px"
               }}
           >
              Tech is metter for us!
