@@ -25,6 +25,11 @@ const CardViewcontroller = () => {
         title="Card Title 3"
         description="This is another card description."
       />
+      <CardView
+        image={test}
+        title="Card Title 2"
+        description="This is another card description."
+      />
     </div>
 
     <div className='sideCardView'>
