@@ -1,6 +1,6 @@
 import React from "react";
-import AppHeader from "../components/AppHeader";
-import AppFooter from "../components/AppFooter";
+import AppHeader from "../components/Header_Footer/AppHeader";
+import AppFooter from "../components/Header_Footer/AppFooter";
 import CardViewcontroller from "../components/CardViewcontroller";
 
 

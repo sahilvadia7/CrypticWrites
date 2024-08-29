@@ -1,5 +1,5 @@
 import React from "react";
-import basestyle from "../Base.module.css";
+import basestyle from "../../style/Base.module.css";
 const Profile = ({ setUserState, username }) => {
   return (
     <div className="profile">

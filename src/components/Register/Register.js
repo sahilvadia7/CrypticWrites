@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import basestyle from "../Base.module.css";
-import registerstyle from "./Register.module.css";
+import basestyle from "../../style/Base.module.css";
+import registerstyle from "../../style/Register.module.css";
 import axios from "axios";
 
 import { useNavigate, NavLink } from "react-router-dom";
