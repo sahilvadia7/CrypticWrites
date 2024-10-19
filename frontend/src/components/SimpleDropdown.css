@@ -1,0 +1,49 @@
+/* SimpleDropdown.css */
+
+body {
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    overflow-x: hidden; /* Prevent horizontal overflow */
+  }
+  
+.dropdown {
+    position: relative;
+    width: 100%; /* Full width */
+    font-family: Arial, sans-serif; /* Font style */
+  }
+  
+  .dropdown-header {
+    background-color: #ffff; /* Light gray background */
+    color: #333; /* Dark gray text color */
+    padding: 10px; /* Padding */
+    width: 100%;
+    cursor: pointer; /* Pointer cursor */
+    border-radius: 5px; /* Rounded corners */
+    text-align: left; /* Align text to the left */
+    border: 1px solid #ddd; /* Border for the header */
+  }
+  
+  .dropdown-list {
+    position: absolute;
+    background-color: white; /* White background for dropdown list */
+    border: 1px solid #ddd; /* Border for dropdown */
+    border-radius: 5px; /* Rounded corners */
+    width: 100%; /* Full width */
+    z-index: 1; /* Layering */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    max-height: 200px; /* Set a max height for the dropdown */
+    overflow-y: auto; /* Enable vertical scrolling if the list is too long */
+  }
+  
+  .dropdown-item {
+    padding: 10px; /* Padding for each item */
+    cursor: pointer; /* Pointer cursor */
+    transition: background-color 0.3s; /* Transition for hover effect */
+    text-align: left; /* Align text to the left */
+  }
+  
+  .dropdown-item:hover {
+    background-color: #e6e6e6; /* Light gray on hover */
+  }
+  

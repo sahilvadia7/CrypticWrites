@@ -1,0 +1,94 @@
+.home-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  .post-card {
+    width: 100%;
+    max-width: 600px;
+    border: 1px solid #ddd;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+  
+  .post-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  .post-content {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 16px;
+  }
+  
+  .post-info {
+    max-width: 75%; /* Limits the description area */
+  }
+  
+  .post-info h2 {
+    text-align: left !important;
+    margin-bottom: 8px;
+    font-size: 1.5rem;
+  }
+  
+  .post-info p {
+    color: #555;
+  }
+  
+  .post-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    font-size: 0.9rem;
+    color: #888;
+    white-space: nowrap;
+  }
+  
+  .read-more {
+    margin-top: 16px;
+    display: inline-block;
+    text-decoration: none;
+    color: #3498db !important;
+    font-weight: bold;
+  }
+  .description {
+    display: -webkit-box;
+    -webkit-line-clamp: 4; /* Show 4 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0; /* Remove any default margin */
+    line-height: 1.5em; /* Adjust based on your design */
+    max-height: 6em; /* 4 lines at line-height of 1.5em */
+}
+
+.no-posts-message{
+  margin: 160px auto;
+}
+
+/* sort post css */
+
+.sort-dropdown {
+  margin: 20px 0;
+  margin-bottom: 20px; /* Add space between the sort dropdown and the posts */
+}
+
+.sort-dropdown label {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.sort-dropdown select {
+  padding: 5px;
+  font-size: 14px;
+}
+
+.no-posts-img{
+  margin: 160px auto;
+}
