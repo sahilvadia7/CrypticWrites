@@ -85,6 +85,34 @@ public class Post {
 	public void setCreator(LoginUser creator) {
 		this.creator = creator;
 	}
+
+
+	public String getImageName() {
+		return imageName;
+	}
+
+
+	public void setImageName(String imageName) {
+		this.imageName = imageName;
+	}
+
+
+	public String getImageType() {
+		return imageType;
+	}
+
+
+	public void setImageType(String imageType) {
+		this.imageType = imageType;
+	}
+
+
+	public void setImageData(byte[] imageData) {
+		this.imageData = imageData;
+	}
+
+
+	
 	
 	
 }

@@ -37,4 +37,8 @@ public class TokenService {
         return repo.findByToken(token); 
     }
 
+	public void deleteToken(Long id) {
+		repo.deleteById(id);
+	}
+
 }

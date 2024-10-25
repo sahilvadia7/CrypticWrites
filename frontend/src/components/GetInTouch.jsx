@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
-import './GetInTouch.css'; // Adjust the path if necessary
+import React, { useState } from "react";
+import "./GetInTouch.css"; // Adjust the path if necessary
 
 const GetInTouch = () => {
-  const [genToken, setGenToken] = useState('');
-  const [copySuccess, setCopySuccess] = useState('');
-  const [tokenToCheck, setTokenToCheck] = useState('');
+  const [genToken, setGenToken] = useState("");
+  const [copySuccess, setCopySuccess] = useState("");
+  const [tokenToCheck, setTokenToCheck] = useState("");
+  const [tokenStatus, setTokenStatus] = useState(""); // To display token status
 
   // Function to generate a new token
   const generateToken = async () => {
@@ -14,15 +15,22 @@ const GetInTouch = () => {
 
     // Send the generated token to the backend to save it with status 'pending'
     try {
-      await fetch('http://localhost:8080/api/addToken', {
-        method: 'POST',
+      const response = await fetch("http://localhost:8080/api/addToken", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify({ token, status: 'pending' }), // Sending token with default status
+        body: JSON.stringify({ token, status: "pending" }), // Sending token with default status
       });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const result = await response.json();
+      console.log("Token saved:", result);
     } catch (error) {
-      console.error('Error saving token:', error);
+      console.error("Error saving token:", error);
     }
   };
 
@@ -35,34 +43,39 @@ const GetInTouch = () => {
   };
 
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(genToken)
+    navigator.clipboard
+      .writeText(genToken)
       .then(() => {
-        setCopySuccess('Token copied to clipboard!');
+        setCopySuccess("Token copied to clipboard!");
       })
       .catch((err) => {
-        setCopySuccess('Failed to copy token');
-        console.error('Error copying text: ', err);
+        setCopySuccess("Failed to copy token");
+        console.error("Error copying text: ", err);
       });
   };
 
   const checkTokenStatus = async () => {
     try {
-      const response = await fetch('/api/getTokenByString', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+      const response = await fetch(
+        "http://localhost:8080/api/getTokenByString",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ token: tokenToCheck }),
         },
-        body: JSON.stringify({ token: tokenToCheck }),
-      });
+      );
 
       const data = await response.json();
-      if (data.status === 'accepted') {
-        window.location.href = '/register';
+      if (data.status === "accepted") {
+        window.location.href = "/register";
       } else {
-        alert('Your token is still pending or invalid.');
+        setTokenStatus("Your token is still pending or invalid.");
       }
     } catch (error) {
-      console.error('Error checking token:', error);
+      console.error("Error checking token:", error);
+      setTokenStatus("Error checking token status.");
     }
   };
 
@@ -70,10 +83,11 @@ const GetInTouch = () => {
     <div className="container">
       <div className="card">
         <h2 className="title">Become a Creator at CrypticWrites</h2>
-        
+
         <p className="description">
-          We're always looking for passionate creators to share their knowledge and insights. If you're
-          interested in joining our team, follow the steps below to apply.
+          We're always looking for passionate creators to share their knowledge
+          and insights. If you're interested in joining our team, follow the
+          steps below to apply.
         </p>
 
         <h3 className="subtitle">Application Requirements</h3>
@@ -84,16 +98,21 @@ const GetInTouch = () => {
           </li>
           <li className="listItem">
             <span className="label">Work Experience:</span>
-            <span>A brief summary of your content creation or relevant experience.</span>
+            <span>
+              A brief summary of your content creation or relevant experience.
+            </span>
           </li>
           <li className="listItem">
             <span className="label">Social Media Profiles:</span>
-            <span>Include links to professional profiles (LinkedIn, Twitter, etc.).</span>
+            <span>
+              Include links to professional profiles (LinkedIn, Twitter, etc.).
+            </span>
           </li>
         </ul>
 
         <p className="description">
-          Once you have your details ready, click the button below to send your application directly to our team.
+          Once you have your details ready, click the button below to send your
+          application directly to our team.
         </p>
 
         <div className="buttonContainer">
@@ -126,6 +145,7 @@ const GetInTouch = () => {
               Check Token
             </button>
           </div>
+          {tokenStatus && <p className="statusMessage">{tokenStatus}</p>}
         </div>
       </div>
     </div>
