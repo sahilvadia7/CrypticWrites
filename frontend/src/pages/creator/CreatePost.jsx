@@ -27,7 +27,6 @@ const CreatePost = () => {
       }));
     }
   }, []);
-  
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -46,33 +45,35 @@ const CreatePost = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     // Basic validation
     if (!post.title || !post.description || !post.author) {
       setError("All fields are required!");
       return;
     }
-  
+
     // Ensure image is selected
     if (!post.image) {
       setError("Please select an image!");
       return;
     }
-  
+
     // Create a FormData object to send the post data
     const formData = new FormData();
     formData.append(
       "post",
       new Blob(
-        [JSON.stringify({
-          title: post.title,
-          description: post.description,
-          creator: { email: post.author },  // Set creator's email here
-          postDate: post.postDate,
-          category: post.category,
-        })],
-        { type: "application/json" }
-      )
+        [
+          JSON.stringify({
+            title: post.title,
+            description: post.description,
+            creator: { email: post.author }, // Set creator's email here
+            postDate: post.postDate,
+            category: post.category,
+          }),
+        ],
+        { type: "application/json" },
+      ),
     );
     formData.append("image", post.image);
     // Ensure image is attached
@@ -100,7 +101,7 @@ const CreatePost = () => {
       setError("An error occurred while creating the post. Please try again.");
       setSuccess("");
     }
-  
+
     // Reset the form
     setPost({
       title: "",
@@ -111,7 +112,6 @@ const CreatePost = () => {
       image: null,
     });
   };
-  
 
   return (
     <div className="create-post-container">

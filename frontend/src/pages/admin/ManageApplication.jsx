@@ -58,7 +58,7 @@ const ManageApplication = () => {
         <div className="nav">
           <a href="/admin/manage-creators">Manage Creators</a>
           {/* <a href="/admin/ManageApplication">Manage Application</a> */}
-          <a href="/admin/report-post-status">Report Posts</a>
+          {/* <a href="/admin/report-post-status">Report Posts</a> */}
           <a href="/admin/view-all-posts">View All Posts</a>
         </div>
       </h1>
