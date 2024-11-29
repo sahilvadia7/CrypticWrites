@@ -11,7 +11,7 @@ const PostDetailPage = () => {
     const fetchPost = async () => {
       const response = await fetch(`http://localhost:8080/api/post/${id}`);
       const data = await response.json();
-      
+
       const formattedPost = {
         id: data.id,
         title: data.title,
@@ -28,6 +28,8 @@ const PostDetailPage = () => {
   }, [id]);
 
   const reportPost = async () => {
+    if (!post) return; // Ensure post is not null or undefined
+
     try {
       const response = await fetch('http://localhost:8080/api/report', {
         method: 'POST',
@@ -67,12 +69,11 @@ const PostDetailPage = () => {
           <span>{post.category}</span>
           <span>{post.postDate}</span>
         </div>
-        
       </div>
-      {/* <button className="report-button" onClick={reportPost}>
-          Report
-        </button>
-        {reportStatus && <p className="report-status">{reportStatus}</p>} */}
+      <button className="report-button" onClick={reportPost}>
+        Report
+      </button>
+      {reportStatus && <p className="report-status">{reportStatus}</p>}
     </div>
   );
 };

@@ -36,10 +36,10 @@ const CreatorPanel = () => {
           <h3>Recent Posts</h3>
           <Link to="/creator/ManagePost">View and manage posts.</Link>
         </div>
-        {/* <div className="admin-box">
+        <div className="admin-box">
                     <h3>Reported Posts</h3>
-                    <Link to="/admin/report-post-status">Check posts that have been reported by users.</Link>
-                </div> */}
+                    <Link to="/creator/report-post-status">Check posts that have been reported by users.</Link>
+                </div>
         <div className="admin-box">
           <h3>Add New Posts</h3>
           <Link to="/creator/CreatePost">Create a New Post</Link>

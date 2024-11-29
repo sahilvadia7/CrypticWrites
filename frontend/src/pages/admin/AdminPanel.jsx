@@ -35,10 +35,10 @@ const AdminPanel = () => {
           <h3>Manage Applications</h3>
           <a href="/admin/ManageApplication">Go to Manage Application</a>
         </div>
-        {/* <div className="admin-box">
+        <div className="admin-box">
                     <h3>Report Posts</h3>
                     <a href="/admin/report-post-status">Go to Report Posts</a>
-                </div> */}
+                </div>
         <div className="admin-box">
           <h3>View All Posts</h3>
           <a href="/admin/view-all-posts">Go to All Posts</a>

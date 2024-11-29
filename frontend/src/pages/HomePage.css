@@ -74,21 +74,100 @@
 
 /* sort post css */
 
+
+.home-container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+/* Search and Sort Container */
+.search-sort-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.search-section {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.search-input {
+  width: 100%;
+  max-width: 300px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
 .sort-dropdown {
-  margin: 20px 0;
-  margin-bottom: 20px; /* Add space between the sort dropdown and the posts */
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
 }
 
-.sort-dropdown label {
-  margin-right: 10px;
-  font-weight: bold;
+.sort-select {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
-.sort-dropdown select {
-  padding: 5px;
+/* Blog Content */
+.blog-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.post-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 300px;
+  margin: 10px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.post-card img {
+  max-width: 100%;
+  height: auto;
+}
+
+.post-meta span {
+  display: block;
   font-size: 14px;
+  color: gray;
+  margin-top: 5px;
 }
 
-.no-posts-img{
-  margin: 160px auto;
+.read-more {
+  margin-top: 10px;
+  text-align: center;
+  display: inline-block;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.read-more:hover {
+  text-decoration: underline;
+}
+
+/* No Posts */
+.no-posts {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.no-posts-img {
+  max-width: 100%;
+  height: auto;
 }

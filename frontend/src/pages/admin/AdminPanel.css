@@ -250,3 +250,5 @@ button:disabled {
     background-color: #ccc;     /* Gray background when disabled */
     cursor: not-allowed;        /* Show not-allowed cursor on hover */
 }
+
+
