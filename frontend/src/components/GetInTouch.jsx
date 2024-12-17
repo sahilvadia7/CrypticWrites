@@ -57,21 +57,32 @@ const GetInTouch = () => {
   const checkTokenStatus = async () => {
     try {
       const response = await fetch(
-        "http://localhost:8080/api/getTokenByString",
+        `http://localhost:8080/api/getTokenStatus/${tokenToCheck}`,
         {
-          method: "POST",
+          method: "GET", // Match backend method
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ token: tokenToCheck }),
         },
       );
 
-      const data = await response.json();
-      if (data.status === "accepted") {
-        window.location.href = "/register";
+      if (!response.ok) {
+        if (response.status === 404) {
+          setTokenStatus("Token not found. Please enter a valid token.");
+        } else {
+          setTokenStatus("An error occurred while checking the token.");
+        }
+        return;
+      }
+
+      const data = await response.text(); // Expecting plain text response ('approved' or 'pending')
+
+      if (data === "approved") {
+        window.location.href = "/register"; // Redirect if the token is approved
+      } else if (data === "pending") {
+        setTokenStatus("Your token is still pending approval.");
       } else {
-        setTokenStatus("Your token is still pending or invalid.");
+        setTokenStatus("Invalid token status.");
       }
     } catch (error) {
       console.error("Error checking token:", error);

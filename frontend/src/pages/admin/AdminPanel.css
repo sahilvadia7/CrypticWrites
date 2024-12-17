@@ -1,6 +1,6 @@
 /* Admin Panel General Styles */
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: "Arial", sans-serif;
     background-color: #f4f4f4;
     margin: 0;
     padding: 0;
@@ -215,11 +215,10 @@ button.danger:hover {
     padding-top: 10px;
 }
 
-
 /* Manage Application */
 .approve {
     background-color: #28a745; /* Green background */
-    color: white;              /* White text */
+    color: white; /* White text */
     border: none;
     padding: 10px 20px;
     font-size: 14px;
@@ -234,7 +233,7 @@ button.danger:hover {
 
 .reject {
     background-color: #dc3545; /* Red background */
-    color: white;              /* White text */
+    color: white; /* White text */
     border: none;
     padding: 10px 20px;
     font-size: 14px;
@@ -247,8 +246,6 @@ button.danger:hover {
 }
 
 button:disabled {
-    background-color: #ccc;     /* Gray background when disabled */
-    cursor: not-allowed;        /* Show not-allowed cursor on hover */
+    background-color: #ccc; /* Gray background when disabled */
+    cursor: not-allowed; /* Show not-allowed cursor on hover */
 }
-
-

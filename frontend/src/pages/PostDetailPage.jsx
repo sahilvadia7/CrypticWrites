@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import './PostDetailPage.css'; // Import the CSS file for styling
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import "./PostDetailPage.css"; // Import the CSS file for styling
 
 const PostDetailPage = () => {
   const { id } = useParams();
   const [post, setPost] = useState(null);
-  const [reportStatus, setReportStatus] = useState(''); // State for report status
+  const [reportStatus, setReportStatus] = useState(""); // State for report status
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -16,10 +16,10 @@ const PostDetailPage = () => {
         id: data.id,
         title: data.title,
         description: data.description,
-        author: data.author,  // Simulating author name
+        author: data.author, // Simulating author name
         postDate: data.postDate,
         category: data.category,
-        image: `http://localhost:8080/api/post/${id}/image`
+        image: `http://localhost:8080/api/post/${id}/image`,
       };
       setPost(formattedPost);
     };
@@ -31,24 +31,27 @@ const PostDetailPage = () => {
     if (!post) return; // Ensure post is not null or undefined
 
     try {
-      const response = await fetch('http://localhost:8080/api/report', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+      const response = await fetch(
+        "http://localhost:8080/api/report/addreport",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            postId: post.id,
+            author: post.author,
+          }),
         },
-        body: JSON.stringify({
-          postId: post.id,
-          author: post.author,
-        }),
-      });
+      );
 
       if (!response.ok) {
-        throw new Error('Failed to report the post');
+        throw new Error("Failed to report the post");
       }
 
-      setReportStatus('Post reported successfully!');
+      setReportStatus("Post reported successfully!");
     } catch (error) {
-      setReportStatus('Error reporting the post: ' + error.message);
+      setReportStatus("Error reporting the post: " + error.message);
     }
   };
 

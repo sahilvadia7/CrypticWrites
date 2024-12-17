@@ -1,31 +1,33 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import './HomePage.css'; // Import the CSS file for styling
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import "./HomePage.css"; // Import the CSS file for styling
 
 const HomePage = () => {
   const [posts, setPosts] = useState([]);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [sortOrder, setSortOrder] = useState('newest'); // Default sorting option
+  const [searchQuery, setSearchQuery] = useState("");
+  const [sortOrder, setSortOrder] = useState("newest"); // Default sorting option
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch('http://localhost:8080/api/post');
+      const response = await fetch("http://localhost:8080/api/post");
       const data = await response.json();
 
       const truncateDescription = (description, lineCount = 1) => {
-        if (!description) return '';
-        const lines = description.split('\n');
-        return lines.length > lineCount ? lines.slice(0, lineCount).join('\n') + '...' : description;
+        if (!description) return "";
+        const lines = description.split("\n");
+        return lines.length > lineCount
+          ? lines.slice(0, lineCount).join("\n") + "..."
+          : description;
       };
 
-      const formattedPosts = data.map(post => ({
+      const formattedPosts = data.map((post) => ({
         id: post.id,
         title: post.title,
         description: truncateDescription(post.description),
-        author: post.author || 'Unknown Author',
+        author: post.author || "Unknown Author",
         date: new Date(post.postDate),
-        category: post.category || 'Uncategorized',
-        image: `http://localhost:8080/api/post/${post.id}/image`
+        category: post.category || "Uncategorized",
+        image: `http://localhost:8080/api/post/${post.id}/image`,
       }));
       setPosts(formattedPosts);
     };
@@ -38,13 +40,13 @@ const HomePage = () => {
     setSortOrder(selectedOrder);
 
     const sortedPosts = [...posts].sort((a, b) => {
-      if (selectedOrder === 'newest') {
+      if (selectedOrder === "newest") {
         return b.date - a.date;
-      } else if (selectedOrder === 'oldest') {
+      } else if (selectedOrder === "oldest") {
         return a.date - b.date;
-      } else if (selectedOrder === 'a-z') {
+      } else if (selectedOrder === "a-z") {
         return a.title.localeCompare(b.title);
-      } else if (selectedOrder === 'z-a') {
+      } else if (selectedOrder === "z-a") {
         return b.title.localeCompare(a.title);
       }
       return 0;
@@ -53,8 +55,8 @@ const HomePage = () => {
     setPosts(sortedPosts);
   };
 
-  const filteredPosts = posts.filter(post =>
-    post.title.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredPosts = posts.filter((post) =>
+    post.title.toLowerCase().includes(searchQuery.toLowerCase()),
   );
 
   return (
@@ -72,7 +74,12 @@ const HomePage = () => {
         </div>
         <div className="sort-dropdown">
           <label htmlFor="sort">Sort by: </label>
-          <select id="sort" value={sortOrder} onChange={handleSortChange} className="sort-select">
+          <select
+            id="sort"
+            value={sortOrder}
+            onChange={handleSortChange}
+            className="sort-select"
+          >
             {/* <option value="newest">Newest</option>
             <option value="oldest">Oldest</option> */}
             <option value="a-z">Title A-Z</option>
@@ -92,7 +99,7 @@ const HomePage = () => {
             />
           </div>
         ) : (
-          filteredPosts.map(post => (
+          filteredPosts.map((post) => (
             <div key={post.id} className="post-card">
               <img src={post.image} alt={post.title} />
               <div className="post-content">
