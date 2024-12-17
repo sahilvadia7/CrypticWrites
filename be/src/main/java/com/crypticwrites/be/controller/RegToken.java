@@ -59,4 +59,21 @@ public class RegToken {
         return foundToken.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
                          .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
+    
+    @GetMapping("/getTokenStatus/{token}")
+    public ResponseEntity<?> getTokenStatus(@PathVariable String token) {
+        Optional<Token> foundToken = service.findByToken(token);
+
+        if (foundToken.isPresent()) {
+            Token tokenEntity = foundToken.get();
+            if ("approved".equalsIgnoreCase(tokenEntity.getStatus())) {
+                return ResponseEntity.ok("approved");
+            } else {
+                return ResponseEntity.ok("pending"); // Or any other status
+            }
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Token not found");
+        }
+    }
+
 }

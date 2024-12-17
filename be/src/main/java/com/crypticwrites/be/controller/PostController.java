@@ -1,6 +1,7 @@
 package com.crypticwrites.be.controller;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,27 +24,35 @@ public class PostController {
     private PostService service;
     
     @PostMapping(value = "/addPost", consumes = {"multipart/form-data"})
-    public ResponseEntity<Post> addPost(@RequestPart Post post, @RequestPart MultipartFile image) {
+    public ResponseEntity<?> addPost(@RequestPart Post post, @RequestPart MultipartFile image) {
         try {
-            // Check if the creator is null
             if (post.getCreator() == null || post.getCreator().getEmail() == null) {
-                throw new IllegalArgumentException("Creator email is missing");
+                return new ResponseEntity<>("Creator email is required.", HttpStatus.BAD_REQUEST);
             }
 
-            // Fetch the creator (LoginUser) by email
             LoginUser creator = service.findByEmail(post.getCreator().getEmail())
-                                        .orElseThrow(() -> new RuntimeException("User not found"));
+                                       .orElseThrow(() -> new RuntimeException("User not found"));
 
             post.setCreator(creator);
 
-            // Save the post and image
+            if (post.getPostDate() == null) {
+//                post.setPostDate(new Date(System.currentTimeMillis())); // Set current date
+            }
+
+            if (post.getCategory() == null || post.getCategory().isEmpty()) {
+                post.setCategory("Uncategorized");
+            }
+
             Post savedPost = service.addPost(post, image);
 
             return new ResponseEntity<>(savedPost, HttpStatus.CREATED);
         } catch (IOException e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("Failed to process the image.", HttpStatus.INTERNAL_SERVER_ERROR);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
 
 
 
@@ -55,8 +64,17 @@ public class PostController {
 
     @GetMapping("/post")
     public List<Post> getAllPost() {
-        return service.getAllPost();
+        return service.getAllPost().stream()
+                .map(post -> {
+                    post.setAuthor(post.getCreator() != null ? post.getCreator().getEmail() : "Unknown Author");
+                    if (post.getCategory() == null || post.getCategory().isEmpty()) {
+                        post.setCategory("Uncategorized");
+                    }
+                    return post;
+                })
+                .collect(Collectors.toList());
     }
+
 
     @GetMapping("/post/{id}")
     public ResponseEntity<Post> findPostById(@PathVariable("id") Long id) {
@@ -70,11 +88,17 @@ public class PostController {
 
     @GetMapping("/creator/{email}")
     public List<Post> getPostsByEmail(@PathVariable String email) {
-        List<Post> posts = service.getPostsByUserEmail(email);
-        return posts.stream()
-                    .map(post -> new Post(post.getId(),post.getTitle(), post.getDescription()))
-                    .collect(Collectors.toList());
+        return service.getPostsByUserEmail(email).stream()
+                .map(post -> {
+                    post.setAuthor(post.getCreator() != null ? post.getCreator().getEmail() : "Unknown Author");
+                    if (post.getCategory() == null || post.getCategory().isEmpty()) {
+                        post.setCategory("Uncategorized");
+                    }
+                    return post;
+                })
+                .collect(Collectors.toList());
     }
+
     
     @DeleteMapping("/deletePost/{id}")
     public ResponseEntity<Void> deletePost(@PathVariable Long id) {

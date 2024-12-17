@@ -19,7 +19,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
@@ -51,6 +50,10 @@ public class Post {
 	 
 
 
+	public Post() {
+		super();
+	}
+
 	public Post(Long id,String title, String description) {
 		super();
 		this.id = id;
@@ -58,60 +61,87 @@ public class Post {
 		this.description = description;
 	}
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	public String getTitle() {
 		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public String getDescription() {
 		return description;
 	}
 
-	public Long getId() {
-		return id;
-	}
-
-	public byte[] getImageData() {
-		return imageData;
-	}
-
-	public LoginUser getCreator() {
-		return creator;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public String getAuthor() {
 		return author;
 	}
 
-	public void setCreator(LoginUser creator) {
-		this.creator = creator;
+	public void setAuthor(String author) {
+		this.author = author;
 	}
 
+	public Date getPostDate() {
+		return postDate;
+	}
+
+	public void setPostDate(Date postDate) {
+		this.postDate = postDate;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
 
 	public String getImageName() {
 		return imageName;
 	}
 
-
 	public void setImageName(String imageName) {
 		this.imageName = imageName;
 	}
-
 
 	public String getImageType() {
 		return imageType;
 	}
 
-
 	public void setImageType(String imageType) {
 		this.imageType = imageType;
 	}
 
+	public byte[] getImageData() {
+		return imageData;
+	}
 
 	public void setImageData(byte[] imageData) {
 		this.imageData = imageData;
 	}
 
+	public LoginUser getCreator() {
+		return creator;
+	}
 
+	public void setCreator(LoginUser creator) {
+		this.creator = creator;
+	}
+
+	
 	
 	
 	
