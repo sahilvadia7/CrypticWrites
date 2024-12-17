@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import "./HomePage.css"; // Import the CSS file for styling
+import "./HomePage.css";
 
 const HomePage = () => {
   const [posts, setPosts] = useState([]);
+  const [featuredPosts, setFeaturedPosts] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const [sortOrder, setSortOrder] = useState("newest"); // Default sorting option
+  const [sortOrder, setSortOrder] = useState("newest");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -23,13 +24,20 @@ const HomePage = () => {
       const formattedPosts = data.map((post) => ({
         id: post.id,
         title: post.title,
-        description: truncateDescription(post.description),
+        description: truncateDescription(post.description, 2),
         author: post.author || "Unknown Author",
         date: new Date(post.postDate),
         category: post.category || "Uncategorized",
         image: `http://localhost:8080/api/post/${post.id}/image`,
       }));
+
       setPosts(formattedPosts);
+
+      // Select 10 random posts for the "Feature of the Day"
+      const randomPosts = formattedPosts
+        .sort(() => Math.random() - 0.5)
+        .slice(0, 6);
+      setFeaturedPosts(randomPosts);
     };
 
     fetchData();
@@ -80,8 +88,8 @@ const HomePage = () => {
             onChange={handleSortChange}
             className="sort-select"
           >
-            {/* <option value="newest">Newest</option>
-            <option value="oldest">Oldest</option> */}
+            <option value="newest">Newest</option>
+            <option value="oldest">Oldest</option>
             <option value="a-z">Title A-Z</option>
             <option value="z-a">Title Z-A</option>
           </select>
@@ -119,6 +127,29 @@ const HomePage = () => {
             </div>
           ))
         )}
+      </div>
+
+      {/* Featured Posts Section */}
+      <div className="featured-posts-section">
+        <h2>Feature of the Day</h2>
+        <div className="featured-posts-container">
+          {featuredPosts.length === 0 ? (
+            <p>No featured posts available.</p>
+          ) : (
+            featuredPosts.map((post) => (
+              <div key={post.id} className="featured-card">
+                <img src={post.image} alt={post.title} />
+                <div className="featured-card-content">
+                  <h3>{post.title}</h3>
+                  <p>{post.description}</p>
+                  <Link to={`/post/${post.id}`} className="read-more">
+                    Read More
+                  </Link>
+                </div>
+              </div>
+            ))
+          )}
+        </div>
       </div>
     </div>
   );
