@@ -4,10 +4,12 @@ import "./AboutProject.css";
 
 const Project = () => {
   const timelineEvents = [
-    { date: "JUN 2024", event: "Conceptualized Project Idea" },
-    { date: "Feb 2024", event: "Developed Initial Prototype" },
-    { date: "Mar 2024", event: "Backend Setup & Infrastructure" },
-    { date: "Apr 2024", event: "test Development in React" },
+    { date: "July 2024", event: "Conceptualized Project Idea" },
+    { date: "July 2024", event: "Developed Initial Prototype" },
+    { date: "Aug 2024", event: "Backend Setup & Infrastructure" },
+    { date: "Sept 2024", event: "Frontend Setup" },
+    { date: "Sept 2024", event: "Test Development in React" },
+    { date: "Jan 2025", event: "Expend New Features" },
   ];
 
   return (

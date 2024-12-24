@@ -7,20 +7,18 @@ const GetInTouch = () => {
   const [tokenToCheck, setTokenToCheck] = useState("");
   const [tokenStatus, setTokenStatus] = useState(""); // To display token status
 
-  // Function to generate a new token
   const generateToken = async () => {
     const rand = () => Math.random().toString(36).substr(2);
     const token = rand() + rand();
     setGenToken(token);
 
-    // Send the generated token to the backend to save it with status 'pending'
     try {
       const response = await fetch("http://localhost:8080/api/addToken", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ token, status: "pending" }), // Sending token with default status
+        body: JSON.stringify({ token, status: "pending" }),
       });
 
       if (!response.ok) {

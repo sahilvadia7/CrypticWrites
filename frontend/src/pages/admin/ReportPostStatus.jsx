@@ -23,7 +23,7 @@ const ReportPostStatus = () => {
 
   // Function to delete a post
   const deletePost = (id) => {
-    fetch(`http://localhost:8080/api/post/${id}`, {
+    fetch(`http://localhost:8080/api/deletePost/${id}`, {
       method: "DELETE",
     })
       .then(() => {
