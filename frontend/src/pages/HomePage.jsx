@@ -10,7 +10,7 @@ const HomePage = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch("http://localhost:8080/api/post");
+      const response = await fetch("http://localhost:8081/api/post");
       const data = await response.json();
 
       const truncateDescription = (description, lineCount = 1) => {
@@ -28,7 +28,7 @@ const HomePage = () => {
         author: post.author || "Unknown Author",
         date: new Date(post.postDate),
         category: post.category || "Uncategorized",
-        image: `http://localhost:8080/api/post/${post.id}/image`,
+        image: `http://localhost:8081/api/post/${post.id}/image`,
       }));
 
       setPosts(formattedPosts);

@@ -21,7 +21,7 @@ const ManagePost = () => {
   const fetchPosts = async (email) => {
     try {
       const response = await fetch(
-        `http://localhost:8080/api/creator/${email}`,
+        `http://localhost:8081/api/creator/${email}`,
       );
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -38,7 +38,7 @@ const ManagePost = () => {
   const deletePost = async (postId) => {
     try {
       const response = await fetch(
-        `http://localhost:8080/api/deletePost/${postId}`,
+        `http://localhost:8081/api/deletePost/${postId}`,
         {
           method: "DELETE",
         },

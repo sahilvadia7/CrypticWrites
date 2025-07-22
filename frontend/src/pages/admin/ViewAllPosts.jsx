@@ -7,7 +7,7 @@ const AllPosts = () => {
   useEffect(() => {
     // Fetch posts from API
     const fetchPosts = async () => {
-      const response = await fetch("http://localhost:8080/api/post");
+      const response = await fetch("http://localhost:8081/api/post");
       const data = await response.json();
       setPosts(data);
     };
@@ -21,7 +21,7 @@ const AllPosts = () => {
 
   const deletePost = async (postId) => {
     const response = await fetch(
-      `http://localhost:8080/api/deletePost/${postId}`,
+      `http://localhost:8081/api/deletePost/${postId}`,
       {
         method: "DELETE",
       },

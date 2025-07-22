@@ -7,7 +7,7 @@ const ReportPostStatus = () => {
 
   // Fetch reported posts when the component mounts
   useEffect(() => {
-    fetch("http://localhost:8080/api/report/getreport")
+    fetch("http://localhost:8081/api/report/getreport")
       .then((response) => response.json())
       .then((data) => {
         // Ensure the response data is in the correct format
@@ -23,7 +23,7 @@ const ReportPostStatus = () => {
 
   // Function to delete a post
   const deletePost = (id) => {
-    fetch(`http://localhost:8080/api/deletePost/${id}`, {
+    fetch(`http://localhost:8081/api/deletePost/${id}`, {
       method: "DELETE",
     })
       .then(() => {

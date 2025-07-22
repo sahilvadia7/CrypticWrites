@@ -14,14 +14,14 @@ const ManageApplication = () => {
 
   useEffect(() => {
     // Fetch existing applications from the API
-    fetch("http://localhost:8080/api/getAllToken")
+    fetch("http://localhost:8081/api/getAllToken")
       .then((response) => response.json())
       .then((data) => setApplications(data))
       .catch(() => setError("Failed to fetch applications"));
   }, []);
 
   const handleApproval = (id) => {
-    fetch(`http://localhost:8080/api/updateTokenStatus/${id}`, {
+    fetch(`http://localhost:8081/api/updateTokenStatus/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ status: "approved" }),
@@ -40,7 +40,7 @@ const ManageApplication = () => {
   };
 
   const handleRejection = (id) => {
-    fetch(`http://localhost:8080/api/deleteToken/${id}`, {
+    fetch(`http://localhost:8081/api/deleteToken/${id}`, {
       method: "DELETE",
     })
       .then(() => {

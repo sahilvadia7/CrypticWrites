@@ -80,7 +80,7 @@ const CreatePost = () => {
     console.log(post); // Check if `author` field is correctly populated
 
     try {
-      const response = await fetch("http://localhost:8080/api/addPost", {
+      const response = await fetch("http://localhost:8081/api/addPost", {
         method: "POST",
         body: formData,
       });

@@ -14,7 +14,7 @@ const ManageCreators = () => {
 
   useEffect(() => {
     // Fetch existing creators from the API
-    fetch("http://localhost:8080/api/user/getAll")
+    fetch("http://localhost:8081/api/user/getAll")
       .then((response) => response.json())
       .then((data) => setCreators(data))
       .catch(() => setError("Failed to fetch creators"));
@@ -26,8 +26,8 @@ const ManageCreators = () => {
       return;
     }
     const apiUrl = editMode
-      ? `http://localhost:8080/api/user/updateUser/${newCreator.id}`
-      : "http://localhost:8080/api/user";
+      ? `http://localhost:8081/api/user/updateUser/${newCreator.id}`
+      : "http://localhost:8081/api/user";
     const method = editMode ? "PUT" : "POST";
 
     fetch(apiUrl, {
@@ -57,7 +57,7 @@ const ManageCreators = () => {
   };
 
   const deleteCreator = (id) => {
-    fetch(`http://localhost:8080/api/deleteUser/${id}`, { method: "DELETE" })
+    fetch(`http://localhost:8081/api/deleteUser/${id}`, { method: "DELETE" })
       .then(() => {
         setCreators(creators.filter((creator) => creator.id !== id));
         setSuccess("Creator deleted successfully!");

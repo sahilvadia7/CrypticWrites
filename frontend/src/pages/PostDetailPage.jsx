@@ -9,7 +9,7 @@ const PostDetailPage = () => {
 
   useEffect(() => {
     const fetchPost = async () => {
-      const response = await fetch(`http://localhost:8080/api/post/${id}`);
+      const response = await fetch(`http://localhost:8081/api/post/${id}`);
       const data = await response.json();
 
       const formattedPost = {
@@ -19,7 +19,7 @@ const PostDetailPage = () => {
         author: data.author, // Simulating author name
         postDate: data.postDate,
         category: data.category,
-        image: `http://localhost:8080/api/post/${id}/image`,
+        image: `http://localhost:8081/api/post/${id}/image`,
       };
       setPost(formattedPost);
     };
@@ -32,7 +32,7 @@ const PostDetailPage = () => {
 
     try {
       const response = await fetch(
-        "http://localhost:8080/api/report/addreport",
+        "http://localhost:8081/api/report/addreport",
         {
           method: "POST",
           headers: {

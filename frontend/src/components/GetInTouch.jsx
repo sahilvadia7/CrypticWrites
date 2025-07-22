@@ -13,7 +13,7 @@ const GetInTouch = () => {
     setGenToken(token);
 
     try {
-      const response = await fetch("http://localhost:8080/api/addToken", {
+      const response = await fetch("http://localhost:8081/api/addToken", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -55,7 +55,7 @@ const GetInTouch = () => {
   const checkTokenStatus = async () => {
     try {
       const response = await fetch(
-        `http://localhost:8080/api/getTokenStatus/${tokenToCheck}`,
+        `http://localhost:8081/api/getTokenStatus/${tokenToCheck}`,
         {
           method: "GET", // Match backend method
           headers: {
